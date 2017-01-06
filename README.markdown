@@ -44,7 +44,7 @@ like this.
 Rails.application.routes.draw do
   namespace :admin do
     authenticate :spree_user do
-      mount Delayed::Web::Engine, at: '/'
+      mount Delayed::Web::Engine, at: '/jobs'
     end
     ....
   end
@@ -67,7 +67,7 @@ An example using Devise's `authenticated` constraint.
 ```ruby
 # config/routes.rb
 authenticated :spree_user, -> user { user.admin? } do
-  mount Delayed::Web::Engine, at: '/'
+  mount Delayed::Web::Engine, at: '/jobs'
 end
 ```
 
