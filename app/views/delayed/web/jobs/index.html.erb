@@ -19,8 +19,8 @@
     </tr>
   </thead>
   <tbody>
-    <% if jobs.any? %>
-      <% jobs.each do |job| %>
+    <% if @jobs.any? %>
+      <% @jobs.each do |job| %>
         <tr>
           <td><%= link_to "##{job.id}", job_path(job) %></td>
           <td>
