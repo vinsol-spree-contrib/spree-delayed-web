@@ -42,15 +42,19 @@ like this.
 ```ruby
 # config/routes.rb
 Rails.application.routes.draw do
-  mount Delayed::Web::Engine, at: '/jobs'
+  namespace :admin do
+    authenticate :spree_user do
+      mount Delayed::Web::Engine, at: '/jobs'
+    end
+    ....
+  end
 end
 ```
 
 This will mount the following routes.
 
-    GET /
-    GET /jobs
-    GET /jobs/:id
+    GET /admin/jobs
+    GET /admin/jobs/:id
 
 ## Authentication
 
@@ -62,7 +66,7 @@ An example using Devise's `authenticated` constraint.
 
 ```ruby
 # config/routes.rb
-authenticated :user, -> user { user.admin? } do
+authenticated :spree_user, -> user { user.admin? } do
   mount Delayed::Web::Engine, at: '/jobs'
 end
 ```
